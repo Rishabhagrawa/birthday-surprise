@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Surprise For You! 🎂</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Indie+Flower&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <div class="device-container">
+    
+    <div id="screen-lock" class="screen active">
+      <div class="lock-card">
+        <div class="badge-circle">
+          <span class="sticker">🐶💐</span>
+        </div>
+
+        <div class="keypad-panel">
+          <p class="lock-title">Enter a passcode 🔒</p>
+          <div class="pin-dots">
+            <div class="dot" id="dot-0"></div>
+            <div class="dot" id="dot-1"></div>
+            <div class="dot" id="dot-2"></div>
+            <div class="dot" id="dot-3"></div>
+          </div>
+
+          <div class="keypad-grid">
+            <button class="key-btn" onclick="inputDigit('1')">1</button>
+            <button class="key-btn" onclick="inputDigit('2')">2</button>
+            <button class="key-btn" onclick="inputDigit('3')">3</button>
+            <button class="key-btn" onclick="inputDigit('4')">4</button>
+            <button class="key-btn" onclick="inputDigit('5')">5</button>
+            <button class="key-btn" onclick="inputDigit('6')">6</button>
+            <button class="key-btn" onclick="inputDigit('7')">7</button>
+            <button class="key-btn" onclick="inputDigit('8')">8</button>
+            <button class="key-btn" onclick="inputDigit('9')">9</button>
+            <button class="key-btn" onclick="clearPin()">C</button>
+            <button class="key-btn" onclick="inputDigit('0')">0</button>
+            <button class="key-btn unlock-btn" onclick="submitPin()">#</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="screen-error" class="screen">
+      <div class="center-content">
+        <div class="big-emoji">❓🐶❓</div>
+        <h2 class="prompt-text">TRY AGAIN</h2>
+        <button class="action-btn" onclick="goToScreen('screen-lock')">Back to Lock Screen</button>
+      </div>
+    </div>
+
+    <div id="screen-prompt" class="screen">
+      <div class="center-content">
+        <h2 class="bubble-heading">I MADE SOMETHING FOR YOU ⭐<br>DO YOU WANNA SEE IT?</h2>
+        <div class="gift-box">🎁</div>
+        <div class="choice-group">
+          <button class="choice-btn yes-btn" onclick="handleYes()">YES</button>
+          <button class="choice-btn no-btn" onclick="goToScreen('screen-no')">NO</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="screen-no" class="screen">
+      <div class="center-content">
+        <h2 class="bubble-heading red-text">WHY DID YOU CLICK NO?! 😠</h2>
+        <div class="big-emoji">🐶💥</div>
+        <button class="action-btn" onclick="goToScreen('screen-prompt')">Okay fine, take me back</button>
+      </div>
+    </div>
+
+    <div id="screen-bday" class="screen">
+      <div class="content-wrapper">
+        <h1 class="sparkle-title">⭐ H A P P Y &nbsp; B I R T H D A Y ⭐</h1>
+        <div class="polaroid-frame">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600" alt="Special Memory" />
+          <p class="polaroid-caption">Camera Memories 📷✨</p>
+        </div>
+        <button class="nav-next-btn" onclick="goToScreen('screen-gallery')">Next ➡️</button>
+      </div>
+    </div>
+
+    <div id="screen-gallery" class="screen">
+      <div class="content-wrapper">
+        <div class="google-search-mockup">
+          <div class="search-bar">
+            <span>🔍 Moments of us 💖</span>
+            <span class="mic">🎙️</span>
+          </div>
+          <div class="search-tabs">
+            <span class="active-tab">Memories</span>
+            <span>Images</span>
+            <span>Videos</span>
+            <span>All</span>
+          </div>
+        </div>
+
+        <div class="photo-grid">
+          <img src="https://picsum.photos/300/300?random=1" alt="Memory 1" />
+          <img src="https://picsum.photos/300/300?random=2" alt="Memory 2" />
+          <img src="https://picsum.photos/300/300?random=3" alt="Memory 3" />
+          <img src="https://picsum.photos/300/300?random=4" alt="Memory 4" />
+        </div>
+        <button class="nav-next-btn" onclick="goToScreen('screen-facts')">Next ➡️</button>
+      </div>
+    </div>
+
+    <div id="screen-facts" class="screen">
+      <div class="content-wrapper">
+        <h2 class="banner-title">FUN FACTS ABOUT YOU</h2>
+        <ul class="facts-list">
+          <li>⭐ You snort whenever you start laughing really hard.</li>
+          <li>⭐ You say "idgaf" and then proceed to talk about it for an entire hour.</li>
+          <li>⭐ Your mood strictly depends on food availability.</li>
+          <li>⭐ You laugh at your own jokes before even finishing them.</li>
+          <li>⭐ You get emotionally attached to random songs for 2 weeks straight.</li>
+        </ul>
+        <button class="nav-next-btn" onclick="goToScreen('screen-letter')">Next ➡️</button>
+      </div>
+    </div>
+
+    <div id="screen-letter" class="screen">
+      <div class="content-wrapper">
+        <h2 class="handwritten-title">With Love ❤️</h2>
+        <div class="letter-box">
+          <p>Happy birthday to my favorite person ever! ✨</p>
+          <p>Life genuinely feels so much better with you in it. Thank you for being my safe place, my therapist, my chaos partner, and the person I can always count on no matter what.</p>
+          <p>I hope this year brings you all the happiness you give to everyone around you. No matter how much we bicker, you'll always be my person.</p>
+          <p><b>Endlessly loved, bestie 🫶</b></p>
+        </div>
+        <button class="action-btn restart-btn" onclick="goToScreen('screen-lock')">Start Over 🔄</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

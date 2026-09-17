@@ -1,5 +1,5 @@
 // Change '1234' to your desired 4-digit PIN!
-const CORRECT_PIN = "1234";
+const CORRECT_PIN = "7492";
 let enteredPin = "";
 
 function inputDigit(digit) {
